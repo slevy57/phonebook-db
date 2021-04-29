@@ -31,7 +31,10 @@ public class JurassicPark {
         List<String> dinosResult = new ArrayList<>();
         try (Connection connection = getConnection()) {
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT breed FROM dinosaur WHERE actual > expected ORDER BY BREED ASC");
+                    "SELECT breed " +
+                            "FROM dinosaur " +
+                            "WHERE actual > expected " +
+                            "ORDER BY breed ASC");
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 dinosResult.add(rs.getString("breed"));
@@ -40,6 +43,5 @@ public class JurassicPark {
             exception.printStackTrace();
         }
         return dinosResult;
-
     }
 }
